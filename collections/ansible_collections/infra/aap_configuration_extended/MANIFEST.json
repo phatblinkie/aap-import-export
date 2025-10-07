@@ -1,0 +1,46 @@
+{
+ "collection_info": {
+  "namespace": "infra",
+  "name": "aap_configuration_extended",
+  "version": "2.0.0",
+  "authors": [
+   "Andrew Huffman",
+   "Adebisi Oyawale @aoyawale",
+   "Kedar Kulkarni @kedark3",
+   "Tom Page @Tompage1994",
+   "Sean Sullivan @sean-m-sullivan",
+   "David Danielsson @djdanielsson",
+   "Ivan Aragon\u00e9s @ivarmu",
+   "Silvio Perez",
+   "Adonis Garc\u00eda"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "controller",
+   "collection",
+   "aap_configuration_extended",
+   "automation_platform",
+   "infrastructure"
+  ],
+  "description": "A collection of roles to extend functionality of aap_configuration collection",
+  "license": [
+   "GPL-3.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {
+   "infra.aap_configuration": ">=3.4.0"
+  },
+  "repository": "https://github.com/redhat-cop/aap_configuration_extended/",
+  "documentation": null,
+  "homepage": null,
+  "issues": "https://github.com/redhat-cop/aap_configuration_extended/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "b0ea19d1e22c444d4129a3cef72979b98713df4ab846565b1e5d3e2df472a10d",
+  "format": 1
+ },
+ "format": 1
+}

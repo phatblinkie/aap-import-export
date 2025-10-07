@@ -1,0 +1,420 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+
+  collections:
+    - infra.aap_configuration_extended
+    - infra.aap_configuration
+
+  vars:
+    no_log: false
+    aap_hostname: "https://aap.phat2.lab"
+    aap_username: "admin"
+    aap_password: "default_PASSWORD_8675309"
+    aap_validate_certs: false
+
+    oauth_app_name: "import-auto-app"
+    token_file: "./aap-gateway-token.json"
+
+    filetree_dir: "/home/exporttest/flatexport/"
+    orgs: "Default"
+    aap_validate_certs: false
+    filetree_dir: "/home/exporttest/flatexport/"
+    dir_orgs_vars: "{{ filetree_dir }}"
+    orgs: "Default"
+
+      #sadly, our flat dir must be massaged into vars
+    filetree_controller_settings: "{{ filetree_dir }}"
+    filetree_aap_organizations: "{{ filetree_dir }}"
+    filetree_controller_labels: "{{ filetree_dir }}"
+    filetree_aap_user_accounts: "{{ filetree_dir }}"
+    filetree_aap_teams: "{{ filetree_dir }}"
+    filetree_controller_credential_types: "{{ filetree_dir }}"
+    filetree_controller_credentials: "{{ filetree_dir }}"
+    filetree_controller_credential_input_sources: "{{ filetree_dir }}"
+    filetree_controller_notifications: "{{ filetree_dir }}"
+    filetree_controller_projects: "{{ filetree_dir }}"
+    filetree_controller_execution_environments: "{{ filetree_dir }}"
+    filetree_aap_applications: "{{ filetree_dir }}"
+    filetree_controller_inventories: "{{ filetree_dir }}"
+    filetree_controller_inventory_sources: "{{ filetree_dir }}"
+    filetree_controller_instance_groups: "{{ filetree_dir }}"
+    filetree_controller_hosts: "{{ filetree_dir }}"
+    filetree_controller_groups: "{{ filetree_dir }}"
+    filetree_controller_templates: "{{ filetree_dir }}"
+    filetree_controller_workflow_job_templates: "{{ filetree_dir }}"
+    filetree_controller_schedules: "{{ filetree_dir }}"
+    filetree_controller_roles: "{{ filetree_dir }}"
+      #file: /home/exporttest/flatexport/controller_job_templates.yaml
+
+  tasks:
+    # ----------------------------------------
+    # Bootstrap / refresh Gateway token
+    # ----------------------------------------
+    #- name: Debug controller templates variable
+    #  include_vars:
+    #    file: /home/exporttest/flatexport/controller_job_templates.yaml
+    #- name: anothertest
+    #  ansible.builtin.debug:
+    #    var: controller_templates
+
+    - name: Lookup Default organization
+      uri:
+        url: "{{ aap_hostname }}/api/controller/v2/organizations/?name=Default"
+        method: GET
+        user: "{{ aap_username }}"
+        password: "{{ aap_password }}"
+        force_basic_auth: true
+        validate_certs: "{{ aap_validate_certs }}"
+      register: org_resp
+
+    - set_fact:
+        default_org_id: "{{ org_resp.json.results[0].id }}"
+
+    - name: Check if OAuth Application exists
+      uri:
+        url: "{{ aap_hostname }}/api/gateway/v1/applications/?name={{ oauth_app_name }}"
+        method: GET
+        user: "{{ aap_username }}"
+        password: "{{ aap_password }}"
+        force_basic_auth: true
+        validate_certs: "{{ aap_validate_certs }}"
+      register: app_lookup
+
+    - name: Create OAuth Application if missing
+      uri:
+        url: "{{ aap_hostname }}/api/gateway/v1/applications/"
+        method: POST
+        user: "{{ aap_username }}"
+        password: "{{ aap_password }}"
+        force_basic_auth: true
+        validate_certs: "{{ aap_validate_certs }}"
+        body_format: json
+        status_code: 201
+        body:
+          name: "{{ oauth_app_name }}"
+          description: "Application for imports"
+          client_type: confidential
+          authorization_grant_type: password
+          organization: "{{ default_org_id }}"
+      when: app_lookup.json.count|int == 0
+      register: app_created
+
+    - set_fact:
+        app_id: "{{ (app_lookup.json.results[0].id
+                     if (app_lookup.json.count|int) > 0
+                     else app_created.json.id) }}"
+
+    - name: Load existing token file if present
+      slurp:
+        src: "{{ token_file }}"
+      register: token_slurp
+      ignore_errors: yes
+
+    - set_fact:
+        token_data: "{{ token_slurp.content | b64decode | from_json }}"
+      when: token_slurp is defined and token_slurp.content is defined
+      ignore_errors: yes
+
+    - name: Refresh token if refresh_token present
+      uri:
+        url: "{{ aap_hostname }}/api/gateway/v1/tokens/refresh/"
+        method: POST
+        body_format: json
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body:
+          refresh_token: "{{ token_data.refresh_token }}"
+      when: token_data is defined and token_data.refresh_token is defined
+      register: token_refreshed
+      failed_when: false
+
+    - name: Create a new write token if refresh missing/failed
+      uri:
+        url: "{{ aap_hostname }}/api/gateway/v1/tokens/"
+        method: POST
+        user: "{{ aap_username }}"
+        password: "{{ aap_password }}"
+        force_basic_auth: true
+        validate_certs: "{{ aap_validate_certs }}"
+        body_format: json
+        status_code: 201
+        body:
+          application: "{{ app_id }}"
+          description: "Import automation token"
+          scope: "write"
+      when: token_refreshed is not defined or token_refreshed.json.access_token is not defined
+      register: token_new
+
+    - name: Pick active token values
+      set_fact:
+        aap_oauthtoken: >-
+          {{ (token_refreshed.json.access_token
+              if (token_refreshed is defined and token_refreshed.json.access_token is defined)
+              else token_new.json.token) }}
+        aap_refresh_token: >-
+          {{ (token_refreshed.json.refresh_token
+              if (token_refreshed is defined and token_refreshed.json.refresh_token is defined)
+              else token_new.json.refresh_token) }}
+
+    - name: Save access/refresh tokens to file
+      copy:
+        dest: "{{ token_file }}"
+        content: "{{ {'access_token': aap_oauthtoken,
+                     'refresh_token': aap_refresh_token } | to_nice_json }}"
+        mode: '0600'
+
+    # ----------------------------------------
+    # Existing import roles…
+    # ----------------------------------------
+    - name: Read objects from export tree
+      include_role:
+        name: infra.aap_configuration_extended.filetree_read
+      vars:
+        filetree_root_dir: "{{ filetree_dir }}"
+      register: all_defs
+
+    - name: Apply Authentication methods
+      include_role:
+        name: infra.aap_configuration.gateway_authenticators
+
+    - name: Apply Authentication maps
+      include_role:
+        name: infra.aap_configuration.gateway_authenticator_maps
+
+    - name: Apply Gateway settings
+      include_role:
+        name: infra.aap_configuration.gateway_settings
+
+    - name: Apply organizations
+      include_role:
+        name: infra.aap_configuration.gateway_organizations
+      vars:
+        assign_galaxy_credentials_to_org: true
+        assign_default_ee_to_org: true
+        assign_notification_templates_to_org: false
+
+    - name: Apply Applications
+      include_role:
+        name: infra.aap_configuration.gateway_applications
+
+    - name: Apply gateway ports
+      include_role:
+        name: infra.aap_configuration.gateway_http_ports
+
+#errors with wrong api url, deeper issue
+#
+#    - name: Apply Gateway service clusters
+#      include_role:
+#        name: infra.aap_configuration.gateway_service_clusters
+#      vars:
+
+#    - name: Apply Gateway service keys
+#      include_role:
+#        name: infra.aap_configuration.gateway_service_keys
+
+#    - name: Apply Gateway service nodes
+#      include_role:
+#        name: infra.aap_configuration.gateway_service_nodes
+
+#    - name: Apply Gateway services
+#      include_role:
+#        name: infra.aap_configuration.gateway_services
+
+    - name: Apply Gateway Teams
+      include_role:
+        name: infra.aap_configuration.gateway_teams
+
+    - name: Apply users
+      include_role:
+        name: infra.aap_configuration.gateway_users
+
+
+    - name: Apply Gateway user roles
+      include_role:
+        name: infra.aap_configuration.gateway_role_user_assignments
+
+    - name: Apply users
+      include_role:
+        name: infra.aap_configuration.gateway_users
+
+    - name: Apply Gateway Routes
+      include_role:
+        name: infra.aap_configuration.gateway_routes
+
+#hub stuff
+#
+#
+    - name: Apply Hub Namespace
+      include_role:
+        name: infra.aap_configuration.hub_namespace
+
+    - name: Apply Hub Collection
+      include_role:
+        name: infra.aap_configuration.hub_collection
+
+    - name: Apply Hub EE registries
+      include_role:
+        name: infra.aap_configuration.hub_ee_registry
+
+    - name: Apply Hub EE repository
+      include_role:
+        name: infra.aap_configuration.hub_ee_repository
+
+    - name: Apply Hub EE repository sync
+      include_role:
+        name: infra.aap_configuration.hub_ee_repository_sync
+
+    - name: Apply Hub EE image
+      include_role:
+        name: infra.aap_configuration.hub_ee_image
+
+    - name: Apply Hub EE registry
+      include_role:
+        name: infra.aap_configuration.hub_ee_registry
+
+    - name: Apply Hub EE registry index
+      include_role:
+        name: infra.aap_configuration.hub_ee_registry_index
+
+    - name: Apply Hub registry sync
+      include_role:
+        name: infra.aap_configuration.hub_ee_registry_sync
+
+          # I think these need exports using infra.aap_configuration_extended 3.0.0
+          #    - name: Apply Hub collection remote
+          #      include_role:
+          #        name: infra.aap_configuration.hub_collection_remote
+
+          #    - name: Apply Hub collection repository
+          #      include_role:
+          #        name: infra.aap_configuration.hub_collection_repository
+
+          #    - name: Apply Hub collection repository sync
+          #      include_role:
+          #        name: infra.aap_configuration.hub_collection_repository_sync
+
+
+#import controller settings and tasks
+    - name: Apply controller settings
+      include_role:
+        name: infra.aap_configuration.controller_settings
+
+    - name: Apply controller instances
+      include_role:
+        name: infra.aap_configuration.controller_instances
+
+          # same as above, we dont use them anyway but it doesnt handle them missing at all
+          #    - name: Apply controller instance groups
+          #      include_role:
+          #        name: infra.aap_configuration.controller_instance_groups
+
+    - name: Apply controller labels
+      include_role:
+        name: infra.aap_configuration.controller_labels
+
+    - name: Apply controller credential types
+      include_role:
+        name: infra.aap_configuration.controller_credential_types
+
+    - name: Apply controller credentials
+      include_role:
+        name: infra.aap_configuration.controller_credentials
+      vars:
+        no_log: false
+
+    - name: Apply controller credential input sources
+      include_role:
+        name: infra.aap_configuration.controller_credential_input_sources
+
+    - name: Apply controller execution_environments
+      include_role:
+        name: infra.aap_configuration.controller_execution_environments
+
+    - name: Apply controller applications
+      include_role:
+        name: infra.aap_configuration.controller_applications
+
+    - name: Apply controller notification templates
+      include_role:
+        name: infra.aap_configuration.controller_notification_templates
+
+
+#duplicated from above, but doesnt hurt to run again
+    - name: Apply organizations
+      include_role:
+        name: infra.aap_configuration.gateway_organizations
+      vars:
+        assign_galaxy_credentials_to_org: true
+        assign_default_ee_to_org: true
+        assign_notification_templates_to_org: false
+
+
+    - name: Apply controller projects
+      include_role:
+        name: infra.aap_configuration.controller_projects
+
+    - name: Apply controller inventories
+      include_role:
+        name: infra.aap_configuration.controller_inventories
+
+    - name: Apply controller inventory sources
+      include_role:
+        name: infra.aap_configuration.controller_inventory_sources
+
+    - name: Apply controller inventory source update
+      include_role:
+        name: infra.aap_configuration.controller_inventory_source_update
+
+    - name: Apply controller hosts
+      include_role:
+        name: infra.aap_configuration.controller_hosts
+
+          #    - name: Apply controller bulk host create
+          #      include_role:
+          #        name: infra.aap_configuration.controller_bulk_host_create
+
+    - name: Apply controller host groups
+      include_role:
+        name: infra.aap_configuration.controller_host_groups
+
+    - name: -------------DEBUG Apply controller job templates
+      debug:
+        var: controller_templates
+
+    - name: Apply controller job templates 2
+      include_role:
+        name: infra.aap_configuration.controller_job_templates
+
+    - name: Apply controller workflow job templates
+      include_role:
+        name: infra.aap_configuration.controller_workflow_job_templates
+
+    - name: Apply controller schedules
+      include_role:
+        name: infra.aap_configuration.controller_schedules
+
+    - name: Apply controller roles
+      include_role:
+        name: infra.aap_configuration.controller_roles
+
+    - name: Apply controller job launch
+      include_role:
+        name: infra.aap_configuration.controller_job_launch
+
+    - name: Apply controller workflow launch
+      include_role:
+        name: infra.aap_configuration.controller_workflow_launch
+
+
+
+
+
+#eda stuff- not really relevant
+
+
+
+
+

@@ -1,0 +1,43 @@
+download_url: https://console.redhat.com/api/automation-hub/v3/plugin/ansible/content/published/collections/artifacts/ansible-controller-4.6.19.tar.gz
+format_version: 1.0.0
+name: controller
+namespace: ansible
+server: https://console.redhat.com/api/automation-hub/
+signatures:
+- pubkey_fingerprint: 39B5D759361A97464C564A8FE1A4BD708A828AAD
+  pulp_created: '2025-08-20T07:46:53.678462Z'
+  signature: '-----BEGIN PGP SIGNATURE-----
+
+
+    iQIcBAABCAAGBQJopX1LAAoJEOGkvXCKgoqtojMQAKG++EPj2npsR7T2nZlV6SYS
+
+    xTeehlI7h2tGtzIhFCGuEe7RWQX9Pwk/827zwWuye1xHaHGV2P8vkxB+QJXQQ7Id
+
+    qoUYGqJ7SyFzahIIXfYd2P1ukZqkG8Ox2PgFqtFVnHTcBhezW+BQGMqaV3XvvPeP
+
+    fM49kTw35KMYBlGITzLrxYLkSel8bNOm9sXCoZQP0EJoyyCTHocCemt3OuMcEGKb
+
+    CuP7vCK/EsCBsweogiLSkQPTOUdyuuxVTshVAZeVNkJ+/SdpycDgn3vTXAfFziP3
+
+    z1sqk5O1HgalwOO8tzSKM4hrVlvGById/4lfJX0uajuepuvZ88DGupy7gJUVmiX/
+
+    MmO/WqSkE8xGYlPmfJK3KFBAnEd0Bvo9kIl60cAX2uuA9Xd1mEQdz4gb7D9JP/XE
+
+    9D9GCszW0MNPh57kQvXGlEW2zICmu1jKpaJCdhWVWaaQ2YJdO/Wi02Il5kVmUQlu
+
+    +Dp5N2HgtN7n76v+6TUx4iA6jFDkcQsoZJjDWBgtL3Z3gDe89WU9R5KEfs/Hgdjz
+
+    mO7D9fJEl0NParHD8DMW+1l8T1mFsuLa3YrpEItDUpuzEpc/OfegJco2zuK+9lvu
+
+    R2ZDj+Zu3Zy145vcpWpRgMITZX/oqo0lJ0odtyoHbkg8MVLZbMaXHgvvbom2Onmj
+
+    62qj+q2gx7OTHuXN8UYz
+
+    =ozly
+
+    -----END PGP SIGNATURE-----
+
+    '
+  signing_service: null
+version: 4.6.19
+version_url: /api/automation-hub/v3/plugin/ansible/content/published/collections/index/ansible/controller/versions/4.6.19/
