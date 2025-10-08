@@ -1,1 +1,1 @@
-ansible-playbook -i localhost aap-export.yml
+ansible-playbook -i export-inventory.cfg aap-export-flat.yml
