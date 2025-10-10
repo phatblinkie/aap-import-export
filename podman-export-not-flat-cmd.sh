@@ -5,17 +5,17 @@ then
 	echo you must run this with selinux disabled sorry, type "sudo setenforce 0" and retry
 	exit 1
 fi
-podman run -it --rm --name aap-porter -v "$PWD":/mnt localhost/aap-porter:latest bash -c 'cd /mnt/ && ./export.cmdline.sh'
-if [ -d ../flatexport ]
+podman run -it --rm --name aap-porter -v "$PWD":/mnt localhost/aap-porter:latest bash -c 'cd /mnt/ && ./export.cmdline.notflat.sh'
+if [ -d ../export ]
 then
-	rm -f ../flatexport.backup 
+	rm -f ../export.backup 
 	echo "moving old flatexport dir to flatexport.backup"
-	mv -fv ../flatexport ../flatexport.backup
-	mv flatexport ../
+	mv -fv ../export ../export.backup
+	mv export ../
 else
-        mv -fv flatexport ../
+        mv -fv export ../
 fi
-echo "The exported files are in flatexport"
+echo "The exported files are in export"
 echo
 echo
 echo
