@@ -9,15 +9,16 @@
 
   vars:
     no_log: false
-    aap_hostname: "https://aap.phat2.lab"
+    aap_hostname: "https://192.168.10.209"
     aap_username: "admin"
     aap_password: "default_PASSWORD_8675309"
     aap_validate_certs: false
 
     oauth_app_name: "import-auto-app"
     token_file: "./aap-gateway-token.json"
-
-    filetree_dir: "/home/exporttest/flatexport/"
+    
+    base_dir: "{{ lookup('env', 'PWD') | default(playbook_dir, true) }}"
+    filetree_dir: "{{ base_dir }}/flatexport/"
     dir_orgs_vars: "{{ filetree_dir }}"
     orgs: "Default"
 
@@ -55,6 +56,10 @@
     #- name: anothertest
     #  ansible.builtin.debug:
     #    var: controller_templates
+
+    - name: debug dir
+      ansible.builtin.debug:
+        var: filetree_dir
 
     - name: Lookup Default organization
       uri:
