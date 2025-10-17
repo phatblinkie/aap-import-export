@@ -1,0 +1,30 @@
+---
+controller_workflows:
+  - name: "Grafana - workflow - Run Compliance Check - win + Linux"
+    description: !unsafe 'Runs compliance checks on all hosts'
+    organization: "OGS Org"
+    simplified_workflow_nodes:
+      - identifier: "30da61e1-dae3-47ba-952a-eabc83789468"
+        workflow_job_template: "Grafana - workflow - Run Compliance Check - win + Linux"
+        unified_job_template: "Grafana - Run software compliance check - windows"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "90aa4ec5-9c60-4f06-9bc3-25e47400ec49"
+        workflow_job_template: "Grafana - workflow - Run Compliance Check - win + Linux"
+        unified_job_template: "Grafana - Run software compliance check -Linux"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+    ask_variables_on_launch: "False"
+    allow_simultaneous: "False"
+    scm_branch: ""
+    limit: ""
+    ask_limit_on_launch: false
+    ask_inventory_on_launch: false
+    webhook_service: ""
+    extra_vars: ""
+    labels:
+      - "grafana"
+    survey_enabled: false
+...

@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "VADER"
+    description: !unsafe 'vader'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+...

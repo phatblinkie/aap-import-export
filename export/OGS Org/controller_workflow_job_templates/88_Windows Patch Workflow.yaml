@@ -1,0 +1,47 @@
+---
+controller_workflows:
+  - name: "Windows Patch Workflow"
+    description: !unsafe 'Windows Patch Workflow'
+    organization: "OGS Org"
+    simplified_workflow_nodes:
+      - identifier: "ca89c458-33bb-41cc-a294-e3dcf7bcb8c2"
+        workflow_job_template: "Windows Patch Workflow"
+        unified_job_template: "Windows Update for Domain_Controllers"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+        always_nodes:
+          - "f91887e2-7c8f-427c-b24e-b40404c64b44"
+          - "9d4a4a62-9358-439f-b665-00bbdd4acfd0"
+      - identifier: "f91887e2-7c8f-427c-b24e-b40404c64b44"
+        workflow_job_template: "Windows Patch Workflow"
+        unified_job_template: "Windows Update for Win_Servers"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "9d4a4a62-9358-439f-b665-00bbdd4acfd0"
+        workflow_job_template: "Windows Patch Workflow"
+        unified_job_template: "Post Patch Check 1"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+        always_nodes:
+          - "c9f5eb58-5442-4f1a-a7ac-6ed29094d70e"
+      - identifier: "c9f5eb58-5442-4f1a-a7ac-6ed29094d70e"
+        workflow_job_template: "Windows Patch Workflow"
+        unified_job_template: "Windows Update for Workstations"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+    ask_variables_on_launch: "False"
+    allow_simultaneous: "False"
+    scm_branch: ""
+    limit: ""
+    ask_limit_on_launch: false
+    ask_inventory_on_launch: false
+    webhook_service: ""
+    extra_vars: ""
+    labels:
+      - "Windows Update"
+    survey_enabled: false
+...

@@ -1,0 +1,10 @@
+---
+controller_groups:
+  - name: "Link_Control"
+    description: !unsafe 'Link_Control'
+    inventory: "Link_Control"
+    hosts:
+      - netcfgsvr1.j114.army.mil
+      - vnia1.j114.army.mil
+      - vnia2.j114.army.mil
+...

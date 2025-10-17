@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "VNIA4"
+    description: !unsafe 'VNIA4'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+...

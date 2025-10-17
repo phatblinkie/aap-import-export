@@ -1,0 +1,5 @@
+---
+controller_labels:
+  - name: "grafana"
+    organization: "OGS Org"
+...

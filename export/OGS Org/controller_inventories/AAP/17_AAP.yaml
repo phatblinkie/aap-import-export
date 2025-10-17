@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "AAP"
+    description: !unsafe 'ansible automation platform server'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    variables:
+      ansible_connection: ssh
+...

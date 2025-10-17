@@ -1,0 +1,12 @@
+---
+controller_groups:
+  - name: "Workstations"
+    description: !unsafe 'windows workstations'
+    inventory: "Workstations"
+    hosts:
+      - VMFWS11.J114.ARMY.MIL
+      - VMFWS3.J114.ARMY.MIL
+      - VMFWS4.J114.ARMY.MIL
+      - VMFWS5.J114.ARMY.MIL
+      - W11-TEST-WS.J114.ARMY.MIL
+...

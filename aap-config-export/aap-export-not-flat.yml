@@ -1,14 +1,14 @@
 
 ---
-- hosts: aap.phat.lab
+- hosts: all
   connection: local
   gather_facts: false
   vars:
     aap_username: "admin"
-    aap_password: "local123"
-    oauth_token: "4NfAQ4MODtW6G3O7N0OmrjiLuoms5r"
-    aap_oauthtoken: "LOQtX09Rv7oK3UJS4zkYUB1II6fpe7"
-    aap_hostname: "https://aap.phat.lab"
+    aap_password: "default_PASSWORD_8675309"
+      #    oauth_token: "4NfAQ4MODtW6G3O7N0OmrjiLuoms5r"
+      #    aap_oauthtoken: "LOQtX09Rv7oK3UJS4zkYUB1II6fpe7"
+    aap_hostname: "172.21.184.30"
     aap_validate_certs: "false"
     flatten_output: false
     output_path: "./export"

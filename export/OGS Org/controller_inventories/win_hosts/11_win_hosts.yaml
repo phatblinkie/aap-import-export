@@ -1,0 +1,26 @@
+---
+controller_inventories:
+  - name: "win_hosts"
+    description: !unsafe 'windows hosts'
+    organization: "OGS Org"
+    kind: "constructed"
+    prevent_instance_group_fallback: False
+    source_vars:
+      plugin: constructed
+      strict: true
+      use_vars_plugins: true
+
+    update_cache_timeout: 0
+    limit: "*"
+    verbosity: 0
+    input_inventories:
+      - Workstations
+      - Win_Servers
+      - VDI_Servers
+      - VADER
+      - Syscon
+      - HBSS
+      - Domain_Controllers
+    instance_groups:
+      - default
+...

@@ -1,0 +1,70 @@
+---
+controller_hosts:
+  - name: "VMFWS11.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS11'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+  - name: "VMFWS3.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS3'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: true
+      win_acrobat: true
+      win_firefox: true
+      win_gchrome: true
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: true
+  - name: "VMFWS4.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS4'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: true
+      win_acrobat: true
+      win_firefox: true
+      win_gchrome: true
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: true
+  - name: "VMFWS5.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS5'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: true
+      win_acrobat: true
+      win_firefox: true
+      win_gchrome: true
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: true
+  - name: "W11-TEST-WS.J114.ARMY.MIL"
+    description: !unsafe 'W11 Testing'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+...

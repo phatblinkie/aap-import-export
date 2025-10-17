@@ -1,0 +1,48 @@
+---
+controller_workflows:
+  - name: "Grafana - workflow - install grafana alloy on all hosts"
+    description: !unsafe 'installs alloy and its config to win and linux hosts'
+    organization: "OGS Org"
+    simplified_workflow_nodes:
+      - identifier: "fe10297f-365f-446d-a4c0-98fad3212e2d"
+        workflow_job_template: "Grafana - workflow - install grafana alloy on all hosts"
+        unified_job_template: "Grafana - deploy windows powershell scripts"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "32bf4e59-4bed-42f2-abab-1445fef4f1db"
+        workflow_job_template: "Grafana - workflow - install grafana alloy on all hosts"
+        unified_job_template: "Grafana - deploy Linux bash scripts"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "1eef00d7-da91-4d0a-b890-3c37ee1c8ead"
+        inventory: "linux_hosts"
+        workflow_job_template: "Grafana - workflow - install grafana alloy on all hosts"
+        unified_job_template: "Grafana - deploy alloy on linux"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+        success_nodes:
+          - "32bf4e59-4bed-42f2-abab-1445fef4f1db"
+      - identifier: "4224b976-2cd7-4b73-a6cd-74724619ced1"
+        inventory: "win_hosts"
+        workflow_job_template: "Grafana - workflow - install grafana alloy on all hosts"
+        unified_job_template: "Grafana - deploy alloy on windows"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+        success_nodes:
+          - "fe10297f-365f-446d-a4c0-98fad3212e2d"
+    ask_variables_on_launch: "False"
+    allow_simultaneous: "True"
+    scm_branch: ""
+    limit: ""
+    ask_limit_on_launch: false
+    ask_inventory_on_launch: false
+    webhook_service: ""
+    extra_vars: ""
+    labels:
+      - "grafana"
+    survey_enabled: false
+...

@@ -1,0 +1,12 @@
+---
+controller_inventory_sources:
+  - name: "test"
+    description: !unsafe ''
+    organization: "OGS Org"
+    source: "scm"
+    limit: ""
+    source_project: "OGS_ldrnet-playbooks"
+    source_path: "support/hosts"
+    inventory: "manualtest"
+    update_on_launch: "False"
+    overwrite: "False"

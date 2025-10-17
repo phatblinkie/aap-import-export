@@ -1,0 +1,8 @@
+---
+controller_groups:
+  - name: "Syscon"
+    description: !unsafe 'Syscon'
+    inventory: "Syscon"
+    hosts:
+      - ans-syscon.j114.army.mil
+...

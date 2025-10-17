@@ -1,0 +1,8 @@
+---
+eda_decision_environments:
+  - name: "Hub Default Decision Environment"
+    description: ""
+    image_url: "aap.j114.army.mil/de-supported-rhel8:latest"
+    organization: "Default"
+    eda_credential: "Hub Decision Environment Container Registry"
+...

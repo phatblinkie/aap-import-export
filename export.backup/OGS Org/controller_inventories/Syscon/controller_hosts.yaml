@@ -1,0 +1,11 @@
+---
+controller_hosts:
+  - name: "ans-syscon.j114.army.mil"
+    description: !unsafe 'Syscon'
+    inventory: "Syscon"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+...

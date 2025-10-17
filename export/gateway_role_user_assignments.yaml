@@ -1,0 +1,15 @@
+---
+gateway_role_user_assignments:
+  - role_definition: "Organization Member"
+    object_id: "2"
+    user: "dcgs-user"
+  - role_definition: "Team Member"
+    object_id: "3"
+    user: "dcgs-user"
+  - role_definition: "Team Admin"
+    object_id: "3"
+    user: "dcgs-user"
+  - role_definition: "Organization Admin"
+    object_id: "2"
+    user: "dcgs-user"
+...

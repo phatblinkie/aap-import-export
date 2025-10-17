@@ -1,0 +1,66 @@
+---
+controller_inventory_sources:
+  - name: "test"
+    description: !unsafe ''
+    organization: "OGS Org"
+    source: "scm"
+    limit: ""
+    source_project: "OGS_ldrnet-playbooks"
+    source_path: "support/hosts"
+    inventory: "manualtest"
+    update_on_launch: "False"
+    overwrite: "False"
+  - name: "ldrnet-hosts"
+    description: !unsafe ''
+    organization: "OGS Org"
+    source: "scm"
+    limit: ""
+    source_project: "OGS_ldrnet-playbooks"
+    source_path: "support/hosts"
+    inventory: "SP27-Test"
+    update_on_launch: "False"
+    overwrite: "False"
+  - name: "ldrnet-support"
+    description: !unsafe ''
+    organization: "OGS Org"
+    source: "scm"
+    limit: ""
+    source_project: "OGS_ldrnet-playbooks"
+    source_path: "support/hosts_sp23"
+    inventory: "SP27-Test"
+    update_on_launch: "False"
+    overwrite: "False"
+  - name: "ldrnet-sp23"
+    description: !unsafe ''
+    organization: "OGS Org"
+    source: "scm"
+    limit: ""
+    source_project: "OGS_ldrnet-playbooks"
+    source_path: "support/hosts_sp23"
+    inventory: "SP27-Test2"
+    update_on_launch: "False"
+    overwrite: "False"
+  - name: "Auto-created source for: win_hosts"
+    description: !unsafe ''
+    organization: "OGS Org"
+    limit: "*"
+    source_path: ""
+    source_vars:
+      plugin: constructed
+      strict: true
+      use_vars_plugins: true
+    inventory: "win_hosts"
+    update_on_launch: "True"
+    overwrite: "True"
+  - name: "Auto-created source for: Linux_hosts"
+    description: !unsafe ''
+    organization: "OGS Org"
+    limit: "*"
+    source_path: ""
+    source_vars:
+      plugin: constructed
+      strict: true
+      use_vars_plugins: true
+    inventory: "linux_hosts"
+    update_on_launch: "True"
+    overwrite: "True"

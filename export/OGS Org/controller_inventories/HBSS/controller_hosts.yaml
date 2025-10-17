@@ -1,0 +1,13 @@
+---
+controller_hosts:
+  - name: "aess.j114.army.mil"
+    description: !unsafe 'HBSS or -AESS'
+    inventory: "HBSS"
+    variables:
+      ansible_connection: psrp
+      ansible_psrp_auth: certificate
+      ansible_psrp_certificate_pem: support/cert-10-25.pem
+      ansible_psrp_certificate_key_pem: support/cert-10-25.key
+      ansible_psrp_cert_validation: ignore
+      ansible_winrm_server_cert_validation: ignore
+...

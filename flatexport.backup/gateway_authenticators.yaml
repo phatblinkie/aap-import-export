@@ -1,0 +1,17 @@
+---
+gateway_authenticators:
+  - name: "Local Database Authenticator"
+    enabled: "True"
+    create_objects: "True"
+    remove_users: "False"
+    configuration: "{}"
+    type: "ansible_base.authentication.authenticator_plugins.local"
+    order: "1"
+  - name: "j114.army.mil"
+    enabled: "True"
+    create_objects: "False"
+    remove_users: "False"
+    configuration: "{'BIND_DN': 'cn=forward.wk,ou=Workstation Admins,ou=Users,ou=OGS,dc=j114,dc=army,dc=mil', 'BIND_PASSWORD': 'default_PASSWORD_8675309', 'CONNECTION_OPTIONS': {}, 'GROUP_SEARCH': ['ou=Groups,ou=j114,ou=OGS,dc=j114,dc=army,dc=mil', 'SCOPE_SUBTREE', '(objectClass=group)'], 'GROUP_TYPE': 'MemberDNGroupType', 'GROUP_TYPE_PARAMS': {'name_attr': 'cn', 'member_attr': 'member'}, 'SERVER_URI': ['ldap://dc1.j114.army.mil:389'], 'START_TLS': False, 'USER_ATTR_MAP': {'email': 'mail', 'last_name': 'sn', 'first_name': 'givenName'}, 'USER_SEARCH': ['ou=Users,ou=OGS,dc=j114,dc=army,dc=mil', 'SCOPE_SUBTREE', '(sAMAccountName=%(user)s)']}"
+    type: "ansible_base.authentication.authenticator_plugins.ldap"
+    order: "2"
+...

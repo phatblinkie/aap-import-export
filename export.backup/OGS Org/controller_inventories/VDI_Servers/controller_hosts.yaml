@@ -1,0 +1,37 @@
+---
+controller_hosts:
+  - name: "viewcon.j114.army.mil"
+    description: !unsafe 'VDI viewcon'
+    inventory: "VDI_Servers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+  - name: "vsql.j114.army.mil"
+    description: !unsafe 'vdi sql'
+    inventory: "VDI_Servers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+...

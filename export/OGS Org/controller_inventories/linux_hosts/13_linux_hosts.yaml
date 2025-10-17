@@ -1,0 +1,25 @@
+---
+controller_inventories:
+  - name: "linux_hosts"
+    description: !unsafe 'Linux Hosts'
+    organization: "OGS Org"
+    kind: "constructed"
+    prevent_instance_group_fallback: False
+    source_vars:
+      plugin: constructed
+      strict: true
+      use_vars_plugins: true
+
+    update_cache_timeout: 0
+    limit: "*"
+    verbosity: 0
+    variables:
+      ansible_connection: ssh
+    input_inventories:
+      - Link_Control
+      - VNIA4
+      - Grafana
+      - AAP
+    instance_groups:
+      - default
+...

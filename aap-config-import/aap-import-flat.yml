@@ -8,8 +8,8 @@
     - infra.aap_configuration
 
   vars:
-    no_log: false
-    aap_hostname: "https://192.168.10.209"
+    #no_log: false
+    aap_hostname: "https://aap2.j114.army.mil"
     aap_username: "admin"
     aap_password: "default_PASSWORD_8675309"
     aap_validate_certs: false
@@ -46,6 +46,7 @@
     filetree_controller_roles: "{{ filetree_dir }}"
       #file: /home/exporttest/flatexport/controller_job_templates.yaml
 
+    controller_configuration_projects_async_delay: 5
   tasks:
     # ----------------------------------------
     # Bootstrap / refresh Gateway token
@@ -186,9 +187,9 @@
       include_role:
         name: infra.aap_configuration.gateway_authenticator_maps
 
-    - name: Apply Gateway settings
-      include_role:
-        name: infra.aap_configuration.gateway_settings
+#    - name: Apply Gateway settings
+#      include_role:
+#        name: infra.aap_configuration.gateway_settings
 
     - name: Apply organizations
       include_role:
@@ -202,9 +203,9 @@
       include_role:
         name: infra.aap_configuration.gateway_applications
 
-    - name: Apply gateway ports
-      include_role:
-        name: infra.aap_configuration.gateway_http_ports
+#    - name: Apply gateway ports
+#      include_role:
+#        name: infra.aap_configuration.gateway_http_ports
 
 #errors with wrong api url, deeper issue
 #
@@ -233,7 +234,6 @@
       include_role:
         name: infra.aap_configuration.gateway_users
 
-
     - name: Apply Gateway user roles
       include_role:
         name: infra.aap_configuration.gateway_role_user_assignments
@@ -242,48 +242,48 @@
       include_role:
         name: infra.aap_configuration.gateway_users
 
-    - name: Apply Gateway Routes
-      include_role:
-        name: infra.aap_configuration.gateway_routes
+#    - name: Apply Gateway Routes
+#      include_role:
+#        name: infra.aap_configuration.gateway_routes
 
 #hub stuff
 #
 #
-    - name: Apply Hub Namespace
-      include_role:
-        name: infra.aap_configuration.hub_namespace
+#    - name: Apply Hub Namespace
+#      include_role:
+#        name: infra.aap_configuration.hub_namespace
 
-    - name: Apply Hub Collection
-      include_role:
-        name: infra.aap_configuration.hub_collection
+#    - name: Apply Hub Collection
+#      include_role:
+#        name: infra.aap_configuration.hub_collection
 
-    - name: Apply Hub EE registries
-      include_role:
-        name: infra.aap_configuration.hub_ee_registry
+#    - name: Apply Hub EE registries
+#      include_role:
+#        name: infra.aap_configuration.hub_ee_registry
 
-    - name: Apply Hub EE repository
-      include_role:
-        name: infra.aap_configuration.hub_ee_repository
+#    - name: Apply Hub EE repository
+#      include_role:
+#        name: infra.aap_configuration.hub_ee_repository
 
-    - name: Apply Hub EE repository sync
-      include_role:
-        name: infra.aap_configuration.hub_ee_repository_sync
+#    - name: Apply Hub EE repository sync
+#      include_role:
+#        name: infra.aap_configuration.hub_ee_repository_sync
 
-    - name: Apply Hub EE image
-      include_role:
-        name: infra.aap_configuration.hub_ee_image
+#    - name: Apply Hub EE image
+#      include_role:
+#        name: infra.aap_configuration.hub_ee_image
 
-    - name: Apply Hub EE registry
-      include_role:
-        name: infra.aap_configuration.hub_ee_registry
+#    - name: Apply Hub EE registry
+#      include_role:
+#        name: infra.aap_configuration.hub_ee_registry
 
-    - name: Apply Hub EE registry index
-      include_role:
-        name: infra.aap_configuration.hub_ee_registry_index
+#    - name: Apply Hub EE registry index
+#      include_role:
+#        name: infra.aap_configuration.hub_ee_registry_index
 
-    - name: Apply Hub registry sync
-      include_role:
-        name: infra.aap_configuration.hub_ee_registry_sync
+#    - name: Apply Hub registry sync
+#      include_role:
+#        name: infra.aap_configuration.hub_ee_registry_sync
 
           # I think these need exports using infra.aap_configuration_extended 3.0.0
           #    - name: Apply Hub collection remote
@@ -300,13 +300,13 @@
 
 
 #import controller settings and tasks
-    - name: Apply controller settings
-      include_role:
-        name: infra.aap_configuration.controller_settings
+#    - name: Apply controller settings
+#      include_role:
+#        name: infra.aap_configuration.controller_settings
 
-    - name: Apply controller instances
-      include_role:
-        name: infra.aap_configuration.controller_instances
+#    - name: Apply controller instances
+#      include_role:
+#        name: infra.aap_configuration.controller_instances
 
           # same as above, we dont use them anyway but it doesnt handle them missing at all
           #    - name: Apply controller instance groups
@@ -327,10 +327,12 @@
       vars:
         no_log: false
 
-    - name: Apply controller credential input sources
-      include_role:
-        name: infra.aap_configuration.controller_credential_input_sources
+#    - name: Apply controller credential input sources
+#      include_role:
+#        name: infra.aap_configuration.controller_credential_input_sources
 
+
+          ################################################dangerous          
     - name: Apply controller execution_environments
       include_role:
         name: infra.aap_configuration.controller_execution_environments
@@ -339,9 +341,9 @@
       include_role:
         name: infra.aap_configuration.controller_applications
 
-    - name: Apply controller notification templates
-      include_role:
-        name: infra.aap_configuration.controller_notification_templates
+#    - name: Apply controller notification templates
+#      include_role:
+#        name: infra.aap_configuration.controller_notification_templates
 
 
 #duplicated from above, but doesnt hurt to run again
@@ -357,18 +359,21 @@
     - name: Apply controller projects
       include_role:
         name: infra.aap_configuration.controller_projects
+      vars:
+        controller_configuration_projects_async_delay: 5
 
     - name: Apply controller inventories
       include_role:
         name: infra.aap_configuration.controller_inventories
 
-    - name: Apply controller inventory sources
-      include_role:
-        name: infra.aap_configuration.controller_inventory_sources
+          ###errors out, some crap about scm. may have to manually add
+#    - name: Apply controller inventory sources
+#      include_role:
+#        name: infra.aap_configuration.controller_inventory_sources
 
-    - name: Apply controller inventory source update
-      include_role:
-        name: infra.aap_configuration.controller_inventory_source_update
+#    - name: Apply controller inventory source update
+#      include_role:
+#        name: infra.aap_configuration.controller_inventory_source_update
 
     - name: Apply controller hosts
       include_role:
@@ -382,17 +387,20 @@
       include_role:
         name: infra.aap_configuration.controller_host_groups
 
-    - name: -------------DEBUG Apply controller job templates
-      debug:
-        var: controller_templates
+#    - name: -------------DEBUG Apply controller job templates
+#      debug:
+#        var: controller_templates
 
-    - name: Apply controller job templates 2
+    - name: Apply controller job templates
       include_role:
         name: infra.aap_configuration.controller_job_templates
 
-    - name: Apply controller workflow job templates
-      include_role:
-        name: infra.aap_configuration.controller_workflow_job_templates
+
+          #produces errors, not sure why, looks deep in role
+          #says something about json and data type
+#    - name: Apply controller workflow job templates
+#      include_role:
+#        name: infra.aap_configuration.controller_workflow_job_templates
 
     - name: Apply controller schedules
       include_role:

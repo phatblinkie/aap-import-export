@@ -1,0 +1,37 @@
+---
+controller_hosts:
+  - name: "dc1.j114.army.mil"
+    description: !unsafe 'dc1'
+    inventory: "Domain_Controllers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: false
+      win_gchrome: false
+      win_java: false
+      win_notepadpp: true
+      win_putty: false
+      win_winscp: false
+  - name: "dc2.j114.army.mil"
+    description: !unsafe 'dc2'
+    inventory: "Domain_Controllers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: false
+      win_gchrome: false
+      win_java: false
+      win_notepadpp: true
+      win_putty: false
+      win_winscp: false
+...

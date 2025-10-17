@@ -1,0 +1,8 @@
+---
+controller_groups:
+  - name: "AAP"
+    description: !unsafe 'ansible automation platform group'
+    inventory: "AAP"
+    hosts:
+      - 172.21.184.30
+...

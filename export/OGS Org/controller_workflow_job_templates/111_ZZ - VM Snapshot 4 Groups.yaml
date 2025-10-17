@@ -1,0 +1,42 @@
+---
+controller_workflows:
+  - name: "ZZ - VM Snapshot 4 Groups"
+    description: !unsafe 'VM Snapshot 4 Groups'
+    organization: "OGS Org"
+    simplified_workflow_nodes:
+      - identifier: "754c7600-7f8e-4dda-ac19-8df230b47477"
+        workflow_job_template: "ZZ - VM Snapshot 4 Groups"
+        unified_job_template: "ZZ - Create Snapshots Group 1"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "923240dd-eaf2-4e23-8d2d-f06026043bb5"
+        workflow_job_template: "ZZ - VM Snapshot 4 Groups"
+        unified_job_template: "ZZ - Create Snapshots Group 4"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "be0ea3fc-c725-44be-85f4-979361c53440"
+        workflow_job_template: "ZZ - VM Snapshot 4 Groups"
+        unified_job_template: "ZZ - Create Snapshots Group 3"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "a03b5081-d40c-4b86-9538-ae2bf83b4fe5"
+        workflow_job_template: "ZZ - VM Snapshot 4 Groups"
+        unified_job_template: "ZZ - Create Snapshots Group 2"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+    ask_variables_on_launch: "False"
+    allow_simultaneous: "True"
+    scm_branch: ""
+    limit: ""
+    ask_limit_on_launch: false
+    ask_inventory_on_launch: false
+    webhook_service: ""
+    extra_vars: ""
+    labels:
+      - "Utility"
+    survey_enabled: false
+...

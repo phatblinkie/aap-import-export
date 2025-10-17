@@ -1,0 +1,10 @@
+---
+controller_credentials:
+  - name: "AAP-ldrnet-30"
+    description: !unsafe 'AAP-ldrnet-30'
+    credential_type: "GitLab Personal Access Token"
+    organization: "OGS Org"
+    inputs:
+      token: ''
+
+...

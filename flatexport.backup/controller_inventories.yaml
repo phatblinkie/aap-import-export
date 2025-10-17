@@ -1,0 +1,136 @@
+---
+controller_inventories:
+  - name: "Demo Inventory"
+    description: !unsafe ''
+    organization: "Default"
+    prevent_instance_group_fallback: False
+  - name: "Workstations"
+    description: !unsafe 'windows workstations'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "Win_Servers"
+    description: !unsafe 'windows servers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "VDI_Servers"
+    description: !unsafe 'VDI Servers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "HBSS"
+    description: !unsafe 'HBSS servers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "Domain_Controllers"
+    description: !unsafe 'domain controllers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "VADER"
+    description: !unsafe 'vader'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "Syscon"
+    description: !unsafe 'Syscon'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "Link_Control"
+    description: !unsafe 'link control'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "VNIA4"
+    description: !unsafe 'VNIA4'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "blank-not used"
+    description: !unsafe 'when playbooks have status hosts defined in them'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+  - name: "AAP"
+    description: !unsafe 'ansible automation platform server'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    variables:
+      ansible_connection: ssh
+  - name: "Grafana"
+    description: !unsafe 'linux hosting grafana containers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    variables:
+      ansible_connection: ssh
+  - name: "SP27-Test"
+    description: !unsafe ''
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+      - controlplane
+  - name: "SP27-Test2"
+    description: !unsafe ''
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+      - controlplane
+  - name: "win_hosts"
+    description: !unsafe 'windows hosts'
+    organization: "OGS Org"
+    kind: "constructed"
+    prevent_instance_group_fallback: False
+    source_vars:
+      plugin: constructed
+      strict: true
+      use_vars_plugins: true
+    update_cache_timeout: 0
+    limit: "*"
+    verbosity: 0
+    input_inventories:
+      - Workstations
+      - Win_Servers
+      - VDI_Servers
+      - VADER
+      - Syscon
+      - HBSS
+      - Domain_Controllers
+    instance_groups:
+      - default
+  - name: "linux_hosts"
+    description: !unsafe 'Linux Hosts'
+    organization: "OGS Org"
+    kind: "constructed"
+    prevent_instance_group_fallback: False
+    source_vars:
+      plugin: constructed
+      strict: true
+      use_vars_plugins: true
+    update_cache_timeout: 0
+    limit: "*"
+    verbosity: 0
+    variables:
+      ansible_connection: ssh
+    input_inventories:
+      - Link_Control
+      - VNIA4
+      - Grafana
+      - AAP
+    instance_groups:
+      - default
+...

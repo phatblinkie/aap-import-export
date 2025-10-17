@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "Win_Servers"
+    description: !unsafe 'windows servers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+...

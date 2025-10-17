@@ -1,0 +1,18 @@
+---
+controller_hosts:
+  - name: "netcfgsvr1.j114.army.mil"
+    description: !unsafe 'netcfgsvr1'
+    inventory: "Link_Control"
+    variables:
+      ansible_connection: ssh
+  - name: "vnia1.j114.army.mil"
+    description: !unsafe 'vnia1'
+    inventory: "Link_Control"
+    variables:
+      ansible_connection: ssh
+  - name: "vnia2.j114.army.mil"
+    description: !unsafe 'vnia2'
+    inventory: "Link_Control"
+    variables:
+      ansible_connection: ssh
+...

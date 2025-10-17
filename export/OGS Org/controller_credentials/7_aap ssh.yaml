@@ -1,0 +1,13 @@
+---
+controller_credentials:
+  - name: "aap ssh"
+    description: !unsafe ''
+    credential_type: "Machine"
+    organization: "OGS Org"
+    inputs:
+      ssh_key_data: ''
+      become_method: sudo
+      become_password: ''
+      become_username: aap
+
+...

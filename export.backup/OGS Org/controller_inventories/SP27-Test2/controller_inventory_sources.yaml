@@ -1,0 +1,13 @@
+---
+controller_inventory_sources:
+  - name: "ldrnet-sp23"
+    description: !unsafe ''
+    organization: "OGS Org"
+    source: "scm"
+    limit: ""
+    source_project: "OGS_ldrnet-playbooks"
+    source_path: "support/hosts_sp23"
+    inventory: "SP27-Test2"
+    update_on_launch: "False"
+    overwrite: "False"
+...

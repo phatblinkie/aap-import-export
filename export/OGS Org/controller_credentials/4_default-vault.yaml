@@ -1,0 +1,10 @@
+---
+controller_credentials:
+  - name: "default-vault"
+    description: !unsafe 'use for most things'
+    credential_type: "Vault"
+    organization: "OGS Org"
+    inputs:
+      vault_password: ''
+
+...

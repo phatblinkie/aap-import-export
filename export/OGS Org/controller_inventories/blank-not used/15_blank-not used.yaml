@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "blank-not used"
+    description: !unsafe 'when playbooks have status hosts defined in them'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+...

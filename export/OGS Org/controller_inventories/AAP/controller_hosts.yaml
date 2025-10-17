@@ -1,0 +1,8 @@
+---
+controller_hosts:
+  - name: "172.21.184.30"
+    description: !unsafe 'AAP 2.5'
+    inventory: "AAP"
+    variables:
+      ansible_connection: ssh
+...

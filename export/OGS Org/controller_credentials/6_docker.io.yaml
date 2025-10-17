@@ -1,0 +1,12 @@
+---
+controller_credentials:
+  - name: "docker.io"
+    description: !unsafe ''
+    credential_type: "Container Registry"
+    organization: "OGS Org"
+    inputs:
+      host: docker.io
+      password: ''
+      username: phatblinkie
+
+...

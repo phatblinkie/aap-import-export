@@ -1,0 +1,21 @@
+---
+gateway_authenticator_maps:
+  - name: "allow users"
+    authenticator: "j114.army.mil"
+    map_type: "allow"
+    role: ""
+    organization: ""
+    team: ""
+    revoke: "False"
+    triggers: "{'groups': {'has_or': ['Users', 'Workstation Admins']}}"
+    order: "1"
+  - name: "make superuser"
+    authenticator: "j114.army.mil"
+    map_type: "is_superuser"
+    role: ""
+    organization: ""
+    team: ""
+    revoke: "False"
+    triggers: "{'always': {}}"
+    order: "2"
+...

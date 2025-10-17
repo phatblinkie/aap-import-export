@@ -1,0 +1,10 @@
+---
+controller_credentials:
+  - name: "gitlab-playbooks"
+    description: !unsafe 'user and token for local gitlab playbooks repo'
+    credential_type: "GitLab Personal Access Token"
+    organization: "OGS Org"
+    inputs:
+      token: ''
+
+...

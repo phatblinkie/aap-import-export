@@ -1,0 +1,271 @@
+---
+controller_hosts:
+  - name: "localhost"
+    description: !unsafe 'AAP host'
+    inventory: "Demo Inventory"
+    variables:
+      ansible_connection: local
+      ansible_python_interpreter: !unsafe '{{ ansible_playbook_python }}'
+  - name: "VMFWS11.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS11'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+  - name: "VMFWS3.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS3'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: true
+      win_acrobat: true
+      win_firefox: true
+      win_gchrome: true
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: true
+  - name: "VMFWS4.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS4'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: true
+      win_acrobat: true
+      win_firefox: true
+      win_gchrome: true
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: true
+  - name: "VMFWS5.J114.ARMY.MIL"
+    description: !unsafe 'VMFWS5'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: true
+      win_acrobat: true
+      win_firefox: true
+      win_gchrome: true
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: true
+  - name: "W11-TEST-WS.J114.ARMY.MIL"
+    description: !unsafe 'W11 Testing'
+    inventory: "Workstations"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+  - name: "ENTERPRISE-CA.J114.ARMY.MIL"
+    description: !unsafe ''
+    inventory: "Win_Servers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+  - name: "FMV.J114.ARMY.MIL"
+    description: !unsafe 'FMV'
+    inventory: "Win_Servers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+  - name: "OGS-VANTAGE.J114.ARMY.MIL"
+    description: !unsafe 'vantage'
+    inventory: "Win_Servers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+  - name: "viewcon.j114.army.mil"
+    description: !unsafe 'VDI viewcon'
+    inventory: "VDI_Servers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+  - name: "vsql.j114.army.mil"
+    description: !unsafe 'vdi sql'
+    inventory: "VDI_Servers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+  - name: "aess.j114.army.mil"
+    description: !unsafe 'HBSS or -AESS'
+    inventory: "HBSS"
+    variables:
+      ansible_connection: psrp
+      ansible_psrp_auth: certificate
+      ansible_psrp_certificate_pem: support/cert-10-25.pem
+      ansible_psrp_certificate_key_pem: support/cert-10-25.key
+      ansible_psrp_cert_validation: ignore
+      ansible_winrm_server_cert_validation: ignore
+  - name: "dc1.j114.army.mil"
+    description: !unsafe 'dc1'
+    inventory: "Domain_Controllers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: false
+      win_gchrome: false
+      win_java: false
+      win_notepadpp: true
+      win_putty: false
+      win_winscp: false
+  - name: "dc2.j114.army.mil"
+    description: !unsafe 'dc2'
+    inventory: "Domain_Controllers"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: false
+      win_gchrome: false
+      win_java: false
+      win_notepadpp: true
+      win_putty: false
+      win_winscp: false
+  - name: "GPED-SVR-V1.j114.army.mil"
+    description: !unsafe 'vader'
+    inventory: "VADER"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+      win_7zip: true
+      win_acrreader: false
+      win_acrobat: false
+      win_firefox: true
+      win_gchrome: false
+      win_java: true
+      win_notepadpp: true
+      win_putty: true
+      win_winscp: false
+  - name: "ans-syscon.j114.army.mil"
+    description: !unsafe 'Syscon'
+    inventory: "Syscon"
+    variables:
+      ansible_connection: psrp
+      ansible_winrm_transport: kerberos
+      ansible_winrm_server_cert_validation: ignore
+      ansible_port: 5985
+  - name: "netcfgsvr1.j114.army.mil"
+    description: !unsafe 'netcfgsvr1'
+    inventory: "Link_Control"
+    variables:
+      ansible_connection: ssh
+  - name: "vnia1.j114.army.mil"
+    description: !unsafe 'vnia1'
+    inventory: "Link_Control"
+    variables:
+      ansible_connection: ssh
+  - name: "vnia2.j114.army.mil"
+    description: !unsafe 'vnia2'
+    inventory: "Link_Control"
+    variables:
+      ansible_connection: ssh
+  - name: "vnia4.j114.army.mil"
+    description: !unsafe 'VNIA4'
+    inventory: "VNIA4"
+    variables:
+      ansible_connection: ssh
+  - name: "172.21.159.81"
+    description: !unsafe 'Syscon-Sim (Lab Assest)'
+    inventory: "Test"
+    variables:
+      ansible_connection: psrp
+      ansible_user: ansible.la
+      ansible_psrp_auth: certificate
+      ansible_psrp_certificate_pem: support/cert-10-25.pem
+      ansible_psrp_certificate_key_pem: support/cert-10-25.key
+      ansible_psrp_cert_validation: ignore
+      ansible_winrm_server_cert_validation: ignore
+  - name: "172.21.184.15"
+    description: !unsafe 'AAP 2.5'
+    inventory: "AAP"
+    variables:
+      ansible_connection: ssh
+  - name: "172.21.184.27"
+    description: !unsafe 'Grafana host'
+    inventory: "Grafana"
+    variables:
+      ansible_connection: ssh
+...

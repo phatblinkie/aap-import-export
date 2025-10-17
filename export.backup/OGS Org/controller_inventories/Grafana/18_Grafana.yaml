@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "Grafana"
+    description: !unsafe 'linux hosting grafana containers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    variables:
+      ansible_connection: ssh
+...

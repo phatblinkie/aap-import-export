@@ -1,0 +1,11 @@
+---
+controller_groups:
+  - name: "Win_Servers"
+    description: !unsafe 'Windows Servers'
+    inventory: "Win_Servers"
+    hosts:
+      - ENTERPRISE-CA.J114.ARMY.MIL
+      - FMV.J114.ARMY.MIL
+      - OGS-VANTAGE.J114.ARMY.MIL
+      - WSUS.J114.ARMY.MIL
+...

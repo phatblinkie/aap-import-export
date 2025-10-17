@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "Link_Control"
+    description: !unsafe 'link control'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+...

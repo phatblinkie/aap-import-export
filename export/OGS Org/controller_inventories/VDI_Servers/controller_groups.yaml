@@ -1,0 +1,9 @@
+---
+controller_groups:
+  - name: "VDI_Servers"
+    description: !unsafe ''
+    inventory: "VDI_Servers"
+    hosts:
+      - viewcon.j114.army.mil
+      - vsql.j114.army.mil
+...

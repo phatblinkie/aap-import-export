@@ -1,0 +1,35 @@
+---
+aap_user_accounts:
+  - username: "admin"
+    email: "admin@example.com"
+    first_name: ""
+    last_name: ""
+    password: ""
+    is_superuser: "True"
+    authenticators: [1]
+    authenticator_uid: "admin"
+  - username: "bbowen"
+    email: ""
+    first_name: ""
+    last_name: ""
+    password: ""
+    is_superuser: "True"
+    authenticators: [1]
+    authenticator_uid: "bbowen"
+  - username: "brian.bowen"
+    email: ""
+    first_name: "brian"
+    last_name: "bowen"
+    password: "Password Disabled"
+    is_superuser: "True"
+    authenticators: [3]
+    authenticator_uid: "brian.bowen"
+  - username: "dcgs-user"
+    email: ""
+    first_name: ""
+    last_name: ""
+    password: ""
+    is_superuser: "False"
+    authenticators: [1]
+    authenticator_uid: "dcgs-user"
+...

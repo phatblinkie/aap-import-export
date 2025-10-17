@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "Domain_Controllers"
+    description: !unsafe 'domain controllers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+...

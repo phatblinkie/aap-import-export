@@ -1,0 +1,8 @@
+---
+controller_groups:
+  - name: "VNIA4"
+    description: !unsafe 'VNIA4'
+    inventory: "VNIA4"
+    hosts:
+      - vnia4.j114.army.mil
+...

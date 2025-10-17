@@ -1,0 +1,10 @@
+---
+controller_inventories:
+  - name: "SP27-Test"
+    description: !unsafe ''
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+      - controlplane
+...

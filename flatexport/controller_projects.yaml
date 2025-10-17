@@ -1,0 +1,31 @@
+---
+controller_projects:
+  - name: "grafana"
+    description: !unsafe 'playbooks for grafana'
+    organization: "OGS Org"
+    scm_type: "git"
+    scm_url: "https://gitpushes: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@github.com/phatblinkie/playbooks.git"
+    scm_branch: ""
+    scm_clean: true
+    scm_delete_on_update: false
+    scm_update_on_launch: false
+    scm_update_cache_timeout: "0"
+    scm_refspec: ""
+    allow_override: false
+    update_project: false
+    timeout: "0"
+  - name: "OGS_ldrnet-playbooks"
+    description: !unsafe 'OGS_ldrnet-playbooks'
+    organization: "OGS Org"
+    scm_type: "git"
+    scm_url: "https://PHROMANO:U8u533NtdK8YqE3RC2d_@git.ldrnet.com/ogs-automation/playbooks.git"
+    scm_branch: ""
+    scm_clean: true
+    scm_delete_on_update: false
+    scm_update_on_launch: false
+    scm_update_cache_timeout: "0"
+    scm_refspec: ""
+    allow_override: false
+    update_project: false
+    timeout: "0"
+...

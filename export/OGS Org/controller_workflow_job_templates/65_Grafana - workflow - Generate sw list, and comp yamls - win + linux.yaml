@@ -1,0 +1,46 @@
+---
+controller_workflows:
+  - name: "Grafana - workflow - Generate sw list, and comp yamls - win + linux"
+    description: !unsafe 'generates fresh sw list, and generates and collects compliance yamls to the controller'
+    organization: "OGS Org"
+    simplified_workflow_nodes:
+      - identifier: "4f98ce57-76dd-42e1-baf1-6acd66cad27f"
+        workflow_job_template: "Grafana - workflow - Generate sw list, and comp yamls - win + linux"
+        unified_job_template: "Grafana - generate software compliance yamls - Linux"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "cf7c4be6-0bad-4154-a945-c221e185f07d"
+        workflow_job_template: "Grafana - workflow - Generate sw list, and comp yamls - win + linux"
+        unified_job_template: "Grafana - generate software compliance yamls - windows"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+      - identifier: "476b3dda-dfeb-4836-99e9-00063effeeb5"
+        workflow_job_template: "Grafana - workflow - Generate sw list, and comp yamls - win + linux"
+        unified_job_template: "Grafana - generate software list - windows"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+        success_nodes:
+          - "cf7c4be6-0bad-4154-a945-c221e185f07d"
+      - identifier: "faf1cd72-4be8-4227-8341-955a2898f4f7"
+        workflow_job_template: "Grafana - workflow - Generate sw list, and comp yamls - win + linux"
+        unified_job_template: "Grafana - generate software list - Linux"
+        limit: ""
+        organization: "OGS Org"
+        all_parents_must_converge: "False"
+        success_nodes:
+          - "4f98ce57-76dd-42e1-baf1-6acd66cad27f"
+    ask_variables_on_launch: "False"
+    allow_simultaneous: "True"
+    scm_branch: ""
+    limit: ""
+    ask_limit_on_launch: false
+    ask_inventory_on_launch: false
+    webhook_service: ""
+    extra_vars: ""
+    labels:
+      - "grafana"
+    survey_enabled: false
+...

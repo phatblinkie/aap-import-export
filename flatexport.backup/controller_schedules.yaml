@@ -1,0 +1,43 @@
+---
+controller_schedules:
+  - name: "ansible pings - windows - grafana"
+    description: !unsafe 'stores ping results in grafana'
+    enabled: false
+    unified_job_template: "Grafana - gather ansible pings - windows - scheduled - 5m"
+    inventory: "win_hosts"
+    dtstart: "2025-04-28T19:45:00Z"
+    dtend: ""
+    timezone: "America/Chicago"
+    rrule: "DTSTART;TZID=America/Chicago:20250428T144500 RRULE:FREQ=MINUTELY;INTERVAL=5"
+    execution_environment: "default ogs-ee-exact"
+    scm_branch: ""
+    forks: 0
+    job_slice_count: 1
+    timeout: 0
+    job_type: "run"
+    job_tags: ""
+    skip_tags: ""
+    limit: ""
+    diff_mode: false
+    verbosity: 0
+  - name: "ansible pings - linux - grafana"
+    description: !unsafe 'stores ping results in grafana'
+    enabled: false
+    unified_job_template: "Grafana - gather ansible pings - linux - scheduled - 5m"
+    inventory: "linux_hosts"
+    dtstart: "2025-04-28T19:45:00Z"
+    dtend: ""
+    timezone: "America/Chicago"
+    rrule: "DTSTART;TZID=America/Chicago:20250428T144500 RRULE:FREQ=MINUTELY;INTERVAL=5"
+    execution_environment: "default ogs-ee-exact"
+    scm_branch: ""
+    forks: 0
+    job_slice_count: 1
+    timeout: 0
+    job_type: "run"
+    job_tags: ""
+    skip_tags: ""
+    limit: ""
+    diff_mode: false
+    verbosity: 0
+...

@@ -1,0 +1,9 @@
+---
+controller_inventories:
+  - name: "VDI_Servers"
+    description: !unsafe 'VDI Servers'
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+    instance_groups:
+      - default
+...

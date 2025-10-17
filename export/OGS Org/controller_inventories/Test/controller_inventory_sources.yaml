@@ -1,0 +1,12 @@
+---
+controller_inventory_sources:
+  - name: "Test"
+    description: !unsafe ''
+    organization: "OGS Org"
+    source: "scm"
+    limit: ""
+    source_project: "OGS"
+    source_path: "support/hosts"
+    inventory: "Test"
+    update_on_launch: "False"
+    overwrite: "False"

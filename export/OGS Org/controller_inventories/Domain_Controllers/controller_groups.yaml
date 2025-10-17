@@ -1,0 +1,9 @@
+---
+controller_groups:
+  - name: "Domain_Controllers"
+    description: !unsafe 'domain controllers'
+    inventory: "Domain_Controllers"
+    hosts:
+      - dc1.j114.army.mil
+      - dc2.j114.army.mil
+...

@@ -1,0 +1,7 @@
+---
+controller_inventories:
+  - name: "manualtest"
+    description: !unsafe ''
+    organization: "OGS Org"
+    prevent_instance_group_fallback: False
+...

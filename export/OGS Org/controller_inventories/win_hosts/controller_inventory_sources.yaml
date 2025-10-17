@@ -1,0 +1,14 @@
+---
+controller_inventory_sources:
+  - name: "Auto-created source for: win_hosts"
+    description: !unsafe ''
+    organization: "OGS Org"
+    limit: "*"
+    source_path: ""
+    source_vars:
+      plugin: constructed
+      strict: true
+      use_vars_plugins: true
+    inventory: "win_hosts"
+    update_on_launch: "True"
+    overwrite: "True"

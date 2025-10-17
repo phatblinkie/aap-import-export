@@ -1,0 +1,68 @@
+---
+controller_groups:
+  - name: "Workstations"
+    description: !unsafe 'windows workstations'
+    inventory: "Workstations"
+    hosts:
+      - VMFWS11.J114.ARMY.MIL
+      - VMFWS3.J114.ARMY.MIL
+      - VMFWS4.J114.ARMY.MIL
+      - VMFWS5.J114.ARMY.MIL
+      - W11-TEST-WS.J114.ARMY.MIL
+  - name: "Win_Servers"
+    description: !unsafe 'Windows Servers'
+    inventory: "Win_Servers"
+    hosts:
+      - ENTERPRISE-CA.J114.ARMY.MIL
+      - FMV.J114.ARMY.MIL
+      - OGS-VANTAGE.J114.ARMY.MIL
+  - name: "VDI_Servers"
+    description: !unsafe ''
+    inventory: "VDI_Servers"
+    hosts:
+      - viewcon.j114.army.mil
+      - vsql.j114.army.mil
+  - name: "HBSS"
+    description: !unsafe 'HBSS'
+    inventory: "HBSS"
+    hosts:
+      - aess.j114.army.mil
+  - name: "Domain_Controllers"
+    description: !unsafe 'domain controllers'
+    inventory: "Domain_Controllers"
+    hosts:
+      - dc1.j114.army.mil
+      - dc2.j114.army.mil
+  - name: "VADER"
+    description: !unsafe 'VADER'
+    inventory: "VADER"
+    hosts:
+      - GPED-SVR-V1.j114.army.mil
+  - name: "Syscon"
+    description: !unsafe 'Syscon'
+    inventory: "Syscon"
+    hosts:
+      - ans-syscon.j114.army.mil
+  - name: "Link_Control"
+    description: !unsafe 'Link_Control'
+    inventory: "Link_Control"
+    hosts:
+      - netcfgsvr1.j114.army.mil
+      - vnia1.j114.army.mil
+      - vnia2.j114.army.mil
+  - name: "VNIA4"
+    description: !unsafe 'VNIA4'
+    inventory: "VNIA4"
+    hosts:
+      - vnia4.j114.army.mil
+  - name: "AAP"
+    description: !unsafe 'ansible automation platform group'
+    inventory: "AAP"
+    hosts:
+      - 172.21.184.15
+  - name: "Grafana"
+    description: !unsafe 'grafana hosts'
+    inventory: "Grafana"
+    hosts:
+      - 172.21.184.27
+...

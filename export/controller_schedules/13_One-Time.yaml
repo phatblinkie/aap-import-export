@@ -1,0 +1,21 @@
+---
+controller_schedules:
+  - name: "One-Time"
+    description: !unsafe ''
+    enabled: true
+    unified_job_template: "Z - 1.) Remove Snapshot of all VMs"
+    inventory: "blank-not used"
+    dtstart: "2025-07-01T06:00:00Z"
+    dtend: ""
+    timezone: "America/New_York"
+    rrule: "DTSTART;TZID=America/New_York:20250701T020000 RRULE:FREQ=YEARLY;INTERVAL=1"
+    scm_branch: ""
+    forks: 0
+    job_slice_count: 0
+    timeout: 0
+    job_type: ""
+    job_tags: ""
+    skip_tags: ""
+    limit: ""
+    verbosity: 0
+...

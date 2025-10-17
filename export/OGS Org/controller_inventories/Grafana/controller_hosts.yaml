@@ -1,0 +1,8 @@
+---
+controller_hosts:
+  - name: "172.21.184.27"
+    description: !unsafe 'Grafana host'
+    inventory: "Grafana"
+    variables:
+      ansible_connection: ssh
+...

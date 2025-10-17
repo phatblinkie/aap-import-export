@@ -1,0 +1,35 @@
+---
+controller_execution_environments:
+  - name: "default ogs-ee-exact"
+    description: !unsafe 'custom image from the semaphore server'
+    organization: "OGS Org"
+    image: "git.ldrnet.com:5050/ogs-automation/playbooks:v1"
+    pull: "missing"
+    credential: "gitlab playbooks container token"
+  - name: "ogs-ee-exact docker"
+    description: !unsafe 'custom image from the semaphore server'
+    organization: "OGS Org"
+    image: "docker.io/phatblinkie/ogs:latest"
+    pull: "missing"
+    credential: "docker.io"
+  - name: "Hub Minimal execution environment"
+    description: !unsafe ''
+    image: "aap.j114.army.mil/ee-minimal-rhel8:latest"
+    pull: ""
+  - name: "Hub Default execution environment"
+    description: !unsafe ''
+    image: "aap.j114.army.mil/ee-supported-rhel8:latest"
+    pull: ""
+  - name: "Minimal execution environment"
+    description: !unsafe ''
+    image: "registry.redhat.io/ansible-automation-platform-25/ee-minimal-rhel8:latest"
+    pull: ""
+  - name: "dont use Default execution environment"
+    description: !unsafe ''
+    image: "registry.redhat.io/ansible-automation-platform-25/ee-supported-rhel8:latest"
+    pull: ""
+  - name: "Control Plane Execution Environment"
+    description: !unsafe ''
+    image: "registry.redhat.io/ansible-automation-platform-25/ee-supported-rhel8:latest"
+    pull: ""
+...

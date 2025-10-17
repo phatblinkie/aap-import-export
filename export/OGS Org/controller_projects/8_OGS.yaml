@@ -1,0 +1,9 @@
+---
+controller_projects:
+  - name: "OGS"
+    description: !unsafe 'OGS'
+    organization: "OGS Org"
+    allow_override: false
+    update_project: false
+    timeout: "0"
+...

@@ -1,0 +1,12 @@
+---
+controller_credentials:
+  - name: "gitlab playbooks container token"
+    description: !unsafe 'brians token'
+    credential_type: "Container Registry"
+    organization: "OGS Org"
+    inputs:
+      host: git.ldrnet.com:5050
+      password: ''
+      username: brian.bowen@mantech.com
+
+...

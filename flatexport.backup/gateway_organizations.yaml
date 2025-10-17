@@ -1,0 +1,7 @@
+---
+gateway_organizations:
+  - name: "Default"
+    description: !unsafe 'The default organization for Ansible Automation Platform'
+  - name: "OGS Org"
+    description: !unsafe 'OGS Org'
+...

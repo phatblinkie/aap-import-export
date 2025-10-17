@@ -1,0 +1,8 @@
+---
+controller_hosts:
+  - name: "vnia4.j114.army.mil"
+    description: !unsafe 'VNIA4'
+    inventory: "VNIA4"
+    variables:
+      ansible_connection: ssh
+...
