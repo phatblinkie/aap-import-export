@@ -1,0 +1,57 @@
+---
+- name: Export Job Templates via Direct AAP 2.5 Gateway API
+  hosts: all
+  connection: local
+  gather_facts: false
+  vars:
+    primary_host: "aap-control4.phatsplace.org"
+    api_user: "admin"
+    api_pass: "ddd"
+
+  tasks:
+    # STEP 1: Handshake with the 2.5 Gateway to generate a runtime OAuth2 Auth Token
+    - name: Authenticate and request API OAuth2 token
+      ansible.builtin.uri:
+        url: "https://{{ primary_host }}/api/controller/v2/tokens/"
+        method: POST
+        user: "{{ api_user }}"
+        password: "{{ api_pass }}"
+        force_basic_auth: true
+        status_code: 201
+        validate_certs: false
+      register: auth_token
+
+    # STEP 2: Use the token to fetch templates via the /api/controller/v2/ path
+    - name: Fetch raw job templates from primary server
+      ansible.builtin.uri:
+        url: "https://{{ primary_host }}/api/controller/v2/job_templates/?page_size=100"
+        method: GET
+        headers:
+          Authorization: "Bearer {{ auth_token.json.token }}"
+        status_code: 200
+        validate_certs: false
+      register: raw_templates
+
+    - name: Ensure backup directory exists
+      ansible.builtin.file:
+        path: "{{ playbook_dir }}/primary_backup"
+        state: directory
+        mode: '0755'
+
+    # STEP 3: Map elements safely to your setup_aap_projects dispatcher format
+    - name: Structure and save clean template list to file
+      ansible.builtin.copy:
+        content: |
+          ---
+          controller_templates:
+          {% for item in raw_templates.json.results %}
+            - name: "{{ item.name }}"
+              description: "{{ item.description | default('') }}"
+              project: "{{ item.summary_fields.project.name | default('') }}"
+              playbook: "{{ item.playbook }}"
+              inventory: "{{ item.summary_fields.inventory.name | default('') }}"
+              job_type: "{{ item.job_type }}"
+              become_enabled: {{ item.become_enabled | lower }}
+          {% endfor %}
+        dest: "{{ playbook_dir }}/primary_backup/job_templates.yaml"
+        mode: '0644'
